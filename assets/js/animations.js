@@ -40,7 +40,7 @@
       var onScroll = function () {
         var h = document.documentElement;
         var max = h.scrollHeight - h.clientHeight;
-        bar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+        bar.style.width = Math.min(100, max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
       };
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
