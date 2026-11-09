@@ -13,8 +13,6 @@ description: "First post. What this blog is, and how it is built."
 This is the first post on this blog. It runs on [Astro](https://astro.build) with the
 [AstroPaper](https://github.com/satnaing/astro-paper) theme, hosted on GitHub Pages.
 
-## Table of contents
-
 ## What to expect
 
 - Short "today I learned" notes.

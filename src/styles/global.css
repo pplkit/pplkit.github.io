@@ -38,22 +38,139 @@
   scroll-margin-block: 1rem;
 }
 
-/* Scroll reveal (see src/scripts/reveal.ts) */
+/* ---- Motion layer (see src/scripts/motion.ts) ---- */
+
+/* Scroll reveal */
 .reveal {
   opacity: 0;
-  transform: translateY(12px);
+  transform: translateY(14px);
   transition:
-    opacity 0.5s ease-out,
-    transform 0.5s ease-out;
+    opacity 0.55s ease-out,
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .reveal.is-visible {
   opacity: 1;
   transform: none;
 }
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
+
+/* Hero entrance */
+#hero > h1,
+#hero > p,
+#hero > div {
+  animation: hero-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+#hero > p {
+  animation-delay: 0.12s;
+}
+#hero > p + p {
+  animation-delay: 0.22s;
+}
+#hero > div {
+  animation-delay: 0.32s;
+}
+@keyframes hero-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* Typewriter caret */
+#hero-typed.typed::after {
+  content: "|";
+  margin-left: 1px;
+  animation: caret-blink 0.9s steps(1) infinite;
+}
+@keyframes caret-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Post cards: slide right and lift on hover */
+#main-content li.my-6 {
+  transition:
+    transform 0.25s ease,
+    opacity 0.55s ease-out;
+  will-change: transform;
+}
+#main-content li.my-6:hover {
+  transform: translateX(6px);
+}
+#main-content li.my-6 > a {
+  transition: text-shadow 0.25s ease;
+}
+#main-content li.my-6:hover > a {
+  text-shadow: 0 0 18px color-mix(in srgb, var(--accent) 45%, transparent);
+}
+
+/* Nav links: animated underline */
+#nav-menu a {
+  position: relative;
+}
+#nav-menu a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+#nav-menu a:hover::after,
+#nav-menu a.active-nav::after {
+  transform: scaleX(1);
+}
+
+/* Theme toggle: spin on hover */
+#theme-btn {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+#theme-btn:hover {
+  transform: rotate(25deg) scale(1.1);
+}
+
+/* Social icons: bounce */
+a[href^="https://github.com"] svg,
+a[href^="mailto:"] svg {
+  transition: transform 0.25s ease;
+}
+a[href^="https://github.com"]:hover svg,
+a[href^="mailto:"]:hover svg {
+  transform: translateY(-3px) scale(1.15);
+}
+
+/* Reading progress bar on posts */
+#reading-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(
+    90deg,
+    var(--accent),
+    color-mix(in srgb, var(--accent) 50%, white)
+  );
+  transition: width 0.1s linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  #hero > h1,
+  #hero > p,
+  #hero > div {
+    opacity: 1;
+    transform: none;
+    animation: none;
     transition: none;
   }
 }
