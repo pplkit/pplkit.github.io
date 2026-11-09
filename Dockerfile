@@ -1,17 +1,17 @@
-# Jekyll + Chirpy build/serve image. Usage: docker compose up
-FROM ruby:3.4-slim
+# Base stage for building the static files
+FROM node:lts AS base
+WORKDIR /app
 
-RUN apt-get update \
- && apt-get install -y --no-install-recommends build-essential git \
- && rm -rf /var/lib/apt/lists/*
+# Install pnpm
+RUN corepack enable && corepack prepare pnpm@latest --activate
 
-WORKDIR /srv/jekyll
-
-# Install gems first so they cache independently of site content
-COPY Gemfile ./
-RUN bundle install
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
 
 COPY . .
+RUN pnpm run build
 
-EXPOSE 4000
-CMD ["bundle", "exec", "jekyll", "serve", "--host", "0.0.0.0", "--livereload", "--force_polling"]
+# Runtime stage for serving the application
+FROM nginx:mainline-alpine-slim AS runtime
+COPY --from=base /app/dist /usr/share/nginx/html
+EXPOSE 80
