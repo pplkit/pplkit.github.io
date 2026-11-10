@@ -138,10 +138,12 @@
 
 /* Social icons: bounce */
 a[href^="https://github.com"] svg,
+a[href^="https://www.linkedin.com"] svg,
 a[href^="mailto:"] svg {
   transition: transform 0.25s ease;
 }
 a[href^="https://github.com"]:hover svg,
+a[href^="https://www.linkedin.com"]:hover svg,
 a[href^="mailto:"]:hover svg {
   transform: translateY(-3px) scale(1.15);
 }

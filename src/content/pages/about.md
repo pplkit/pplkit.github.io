@@ -7,4 +7,4 @@ Hi, I'm Pulkit. This is where I write about code, tools and the things I figure 
 
 Expect short "today I learned" notes, debugging stories, and write-ups of side projects.
 
-Find me on [GitHub](https://github.com/pplkit).
+Find me on [GitHub](https://github.com/pplkit) and [LinkedIn](https://www.linkedin.com/in/pplkit/).

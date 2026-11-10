@@ -30,6 +30,7 @@ export default defineAstroPaperConfig({
   },
   socials: [
     { name: "github", url: "https://github.com/pplkit" },
+    { name: "linkedin", url: "https://www.linkedin.com/in/pplkit/" },
     { name: "mail",   url: "mailto:1729.pulkit@gmail.com" },
   ],
   shareLinks: [
