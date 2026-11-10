@@ -79,6 +79,20 @@
   }
 }
 
+/* Avatar */
+#hero > header {
+  animation: hero-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+#hero-avatar {
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease;
+}
+#hero-avatar:hover {
+  transform: scale(1.06) rotate(-3deg);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
 /* Typewriter caret */
 #hero-typed.typed::after {
   content: "|";
@@ -166,6 +180,7 @@ a[href^="mailto:"]:hover svg {
 
 @media (prefers-reduced-motion: reduce) {
   .reveal,
+  #hero > header,
   #hero > h1,
   #hero > p,
   #hero > div {

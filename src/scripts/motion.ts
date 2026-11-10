@@ -4,7 +4,7 @@ const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 function reveal() {
   const targets = document.querySelectorAll<HTMLElement>(
-    "#main-content li.my-6, #main-content h2, #main-content pre, #main-content blockquote, #main-content img"
+    "#main-content li.my-6, #main-content h2, #main-content pre, #main-content blockquote, #main-content img:not(#hero-avatar)"
   );
   const io = new IntersectionObserver(
     entries => {
